@@ -7,7 +7,6 @@ import {
   Switch,
 } from 'react-native';
 
-
 function calcBMI(weight, heigh, imperial) {
   if (imperial){
     weight = weight*0.453592
@@ -16,13 +15,32 @@ function calcBMI(weight, heigh, imperial) {
   var calc = weight/(Math.pow(heigh/100, 2))
   return  (isNaN(calc)) ? 'BMI': calc.toString()
 }
+function getCategories(weight, heigh, imperial) {
+  var bmi = calcBMI(weight, heigh, imperial)
+  if (isNaN(bmi)){
+    return ''
+  }else if (bmi < 18.5){
+    return 'Underweight'
+  }else if (bmi < 24.9) {
+    return 'Normal weight'
+  }else if (bmi < 29.9) {
+    return 'Overweight '
+  }else{
+    return  'Obesity '
+  }
+}
 
 export default function BMI()  {
   const [heigh, setHeigh] = React.useState(0);
   const [weight, setWeight] = React.useState(0);
   const [isImperial, setImperial] = React.useState(false);
 
-  const toggleSwitch = () => setImperial(previousState => !previousState);
+  const toggleSwitch = () => {
+    setImperial(previousState => !previousState)
+    setHeigh(0)
+    setWeight(0)
+  }
+
   return (
     <View style={styles.metrContainer}>
       <Text style={styles.text}>
@@ -54,6 +72,14 @@ export default function BMI()  {
       }}
         editable={false}
         value={calcBMI(weight, heigh, isImperial)}
+      />
+      <TextInput style={{
+        alignSelf: 'center',
+        color: '#000',
+        fontSize: 16,
+      }}
+        editable={false}
+        value={getCategories(weight, heigh, isImperial)}
       />
     </View>
   );
