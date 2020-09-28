@@ -65,22 +65,19 @@ export default function BMI()  {
       keyboardType='number-pad'
       onChangeText= {text => setWeight(parseInt(text, 10))}
       />
-      <TextInput style={{
+      <Text style={{
         alignSelf: 'center',
-        color: '#000',
-        fontSize: 16,
-      }}
-        editable={false}
-        value={calcBMI(weight, heigh, isImperial)}
-      />
-      <TextInput style={{
+        fontSize: 22,
+      }}>
+        {calcBMI(weight, heigh, isImperial)}
+      </Text>
+      <Text style={{
         alignSelf: 'center',
-        color: '#000',
-        fontSize: 16,
-      }}
-        editable={false}
-        value={getCategories(weight, heigh, isImperial)}
-      />
+        fontSize: 22,
+      }}>
+
+        {getCategories(weight, heigh, isImperial)}
+      </Text>
     </View>
   );
 };
