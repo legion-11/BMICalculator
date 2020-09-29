@@ -13,8 +13,9 @@ function calcBMI(weight, heigh, imperial) {
     heigh = heigh*2.54
   }
   var calc = weight/(Math.pow(heigh/100, 2))
-  return  (isNaN(calc)) ? 'BMI': calc.toString()
+  return  (isNaN(calc) || calc===Infinity) ? 'BMI': calc.toString()
 }
+
 function getCategories(weight, heigh, imperial) {
   var bmi = calcBMI(weight, heigh, imperial)
   if (isNaN(bmi)){
