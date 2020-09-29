@@ -54,6 +54,7 @@ export default function BMI()  {
         onValueChange={toggleSwitch}
         value={isImperial}s
       />
+
       <TextInput style={styles.textinput}
       placeholder={isImperial ? "Heigh in": "Heigh cm"}
       keyboardType='number-pad'
@@ -65,17 +66,18 @@ export default function BMI()  {
       keyboardType='number-pad'
       onChangeText= {text => setWeight(parseInt(text, 10))}
       />
+
       <Text style={{
         alignSelf: 'center',
         fontSize: 22,
       }}>
         {calcBMI(weight, heigh, isImperial)}
       </Text>
+
       <Text style={{
         alignSelf: 'center',
         fontSize: 22,
       }}>
-
         {getCategories(weight, heigh, isImperial)}
       </Text>
     </View>
